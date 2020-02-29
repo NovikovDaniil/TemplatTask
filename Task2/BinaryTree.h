@@ -90,6 +90,7 @@ void BinaryTree<T>::add(T data, Node*& node)
 	else if (data > node->data) this->add(data, node->right);
 	else throw "This value is already in the tree!";
 }
+
 template<class T>
 string BinaryTree<T>::BinaryTreeAsString(Node* node) {
 	string leftStr = (node->left == nullptr) ? "{}" : BinaryTreeAsString(node->left);
@@ -117,7 +118,7 @@ void BinaryTree<T>::del(T data, Node*& root) {
 			root = nullptr;
 		}
 		else if (temp->right == nullptr && temp->left != nullptr)
-		{
+		{	
 			root = temp->left;
 		}
 		else if (temp->left == nullptr && temp->right != nullptr)
@@ -126,10 +127,10 @@ void BinaryTree<T>::del(T data, Node*& root) {
 		}
 		else
 		{
-			Node*& maxNode=temp->left;//to delete an item will look for the maximum number in the left subtree to replace
+			Node* maxNode=temp->left;//to delete an item will look for the maximum number in the left subtree to replace
 			while (maxNode->right) maxNode = maxNode->right;
 			temp->data = maxNode->data;
-			this->del(maxNode->data, maxNode);
+			del(maxNode->data, temp->left);
 		}
 	}
 }
@@ -166,9 +167,12 @@ void BinaryTree<T>::getLeaf(Node* root, vector<T>& leaf)
 		if (root->right) getLeaf(root->right, leaf);
 	}
 }
+
 template<class T>
 BinaryTree<T>::operator string()
 {
 	if (root == nullptr) return "{}";
 	else return this->BinaryTreeAsString(this->root);
 }
+
+

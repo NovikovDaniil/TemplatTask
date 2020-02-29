@@ -2,17 +2,18 @@
 //
 #include"BinaryTree.h"
 #include <iostream>
+#include<string>
 using namespace std;
 
 int main()
 {
+
 	BinaryTree<int> a;
-	vector<int> v=a.traversal();
+	vector<int> v = a.traversal();
 	a.add(10);
 	a.add(5);
 	a.add(12);
 	a.add(4);
-	cout << (string)a << endl;
 	cout << (string)a << endl;
 	a.del(5);
 	if (a.contains(12)) cout << "Yes!!" << endl;
